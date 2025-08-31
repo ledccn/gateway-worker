@@ -1,0 +1,35 @@
+{
+  "name": "ledc/gateway-worker",
+  "description": "Webman plugin ledc/gateway-worker",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "david",
+      "email": "367013672@qq.com",
+      "homepage": "https://www.iyuu.cn",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "email": "367013672@qq.com",
+    "issues": "https://github.com/ledccn/gateway-worker/issues",
+    "forum": "https://www.iyuu.cn",
+    "wiki": "https://www.iyuu.cn",
+    "source": "https://github.com/ledccn/gateway-worker"
+  },
+  "require": {
+    "php": ">=8.3",
+    "ext-json": "*",
+    "ext-posix": "*",
+    "workerman/webman-framework": ">=2.1",
+    "workerman/gateway-worker": ">=4.0",
+    "webman/console": ">=2.1",
+    "webman/event": ">=1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Ledc\\GatewayWorker\\": "src"
+    }
+  }
+}
