@@ -262,20 +262,27 @@ class EventHandler
     /**
      * 将client_id加入组
      * @param string $client_id 全局唯一的客户端socket连接标识
-     * @param array|array<string> $groups
+     * @param string|array|array<string> $groups
      * @return void
      */
-    final public static function joinGroup(string $client_id, array $groups): void
+    final public static function joinGroup(string $client_id, string|array $groups): void
     {
         if (empty($client_id)) {
             throw new InvalidArgumentException('client_id不能为空');
         }
+        if (empty($groups)) {
+            throw new InvalidArgumentException('groups不能为空');
+        }
 
-        foreach ($groups as $group) {
-            if (empty($group)) {
-                throw new InvalidArgumentException('group不能为空');
+        if (is_string($groups)) {
+            Gateway::joinGroup($client_id, $groups);
+        } else {
+            foreach ($groups as $group) {
+                if (empty($group)) {
+                    throw new InvalidArgumentException('group不能为空');
+                }
+                Gateway::joinGroup($client_id, $group);
             }
-            Gateway::joinGroup($client_id, $group);
         }
     }
 }
