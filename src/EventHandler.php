@@ -252,6 +252,7 @@ class EventHandler
         }
 
         if (hash_equals($known_string, $auth)) {
+            // 注意：bindUid 时，uid 强制转换为字符串；其他业务系统调用时，请保持一致
             Gateway::bindUid($client_id, $uid);
             return true;
         }
@@ -275,13 +276,15 @@ class EventHandler
         }
 
         if (is_string($groups)) {
+            // 注意：joinGroup 时，强制转换为字符串；其他业务系统调用时，请保持一致
             Gateway::joinGroup($client_id, $groups);
         } else {
             foreach ($groups as $group) {
                 if (empty($group)) {
                     throw new InvalidArgumentException('group不能为空');
                 }
-                Gateway::joinGroup($client_id, $group);
+                // 注意：joinGroup 时，强制转换为字符串；其他业务系统调用时，请保持一致
+                Gateway::joinGroup($client_id, (string)$group);
             }
         }
     }
